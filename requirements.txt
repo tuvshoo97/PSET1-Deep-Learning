@@ -1,4 +1,4 @@
-streamlit==1.4.0
+streamlit
 fastai==2.7.10
 fastcore==1.5.28
-gdown==4.2.0
+gdown
