@@ -2,35 +2,37 @@ import streamlit as st
 from fastai.vision.all import *
 import gdown
 
-st.markdown("""# Mongolian Four Food Classifier
+st.set_page_config(page_title="Mongolian Four Food Classifier", page_icon=":fork_and_knife:", layout="wide")
 
-Mongolians eat these Four traditional foods durin Holidays: Tsuivan, Khuushuur, Buuz, Niislel salad. This app allows you to upload an image of one of these foods and the connected model will classify it for you. Upload an image and try it out!
+st.markdown("# Mongolian Four Food Classifier")
 
-This app was created as a demo for the Deep Learning course at LETU Mongolia American University.""")
+st.markdown("Mongolians eat these Four traditional foods durin Holidays: Tsuivan, Khuushuur, Buuz, Niislel salad. This app allows you to upload an image of one of these foods and the connected model will classify it for you. Upload an image and try it out!")
 
-st.markdown("""### Upload your image here""")
+st.markdown("This app was created as a demo for the Deep Learning course at LETU Mongolia American University.")
 
-image_file = st.file_uploader("Image Uploader", type=["png","jpg","jpeg"])
+st.markdown("### Upload your image here")
 
-## Model Loading Section
+image_file = st.file_uploader("Image Uploader", type=["png","jpg","jpeg"], key="upload_img")
+
+# Model Loading Section
 model_path = Path("export.pkl")
 
 if not model_path.exists():
-    with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
-        url = 'https://drive.google.com/uc?id=1cs7nWO-XIQBWqLnTjzuG_lOkEnXwyrpd'
+    with st.spinner("Downloading model... this may take a while! \n Don't stop it!"):
+        url = 'https://drive.google.com/file/d/1cs7nWO-XIQBWqLnTjzuG_lOkEnXwyrpd/view?usp=share_link'
         output = 'export.pkl'
-        gdown.download(url, output, quiet=False)
+        gdown.download(url, output, quiet=False, use_cookies=False)
     learn_inf = load_learner('export.pkl')
 else:
     learn_inf = load_learner('export.pkl')
 
-col1, col2 = st.columns(2)
 if image_file is not None:
-    img = PILImage.create(image_file)
-    pred, pred_idx, probs = learn_inf.predict(img)
-
-    with col1:
-        st.markdown(f"""### Predicted food: {pred.capitalize()}""")
-        st.markdown(f"""### Probability: {round(max(probs.tolist()), 3) * 100}%""")
-    with col2:
-        st.image(img, width=300)
+    with st.spinner("Classifying food...", key="classifying"):
+        img = PILImage.create(image_file)
+        pred, pred_idx, probs = learn_inf.predict(img)
+        
+    st.write(f"""## Predicted food: {pred.capitalize()}""")
+    st.write(f"""## Probability: {round(max(probs.tolist()), 3) * 100}%""")
+    st.image(img, width=300)
+    
+    st.balloons() # adds background animation
