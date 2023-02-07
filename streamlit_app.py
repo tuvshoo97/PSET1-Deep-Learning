@@ -4,13 +4,13 @@ import gdown
 
 st.set_page_config(page_title="Mongolian Four Food Classifier", page_icon=":fork_and_knife:", layout="wide")
 
-st.markdown("# Mongolian Four Food Classifier")
+st.markdown("""# Mongolian Four Food Classifier
 
-st.markdown("Mongolians eat these Four traditional foods durin Holidays: Tsuivan, Khuushuur, Buuz, Niislel salad. This app allows you to upload an image of one of these foods and the connected model will classify it for you. Upload an image and try it out!")
+Get ready to impress your Mongolian friends with your knowledge of traditional holiday foods! With this app, you can upload an image of Tsuivan, Khuushuur, Buuz, or Niislel salad and find out which delicious dish it is. Who needs a taste tester when you've got this app? 
 
-st.markdown("This app was created as a demo for the Deep Learning course at LETU Mongolia American University.")
+This app was created as a fun demo for the Deep Learning course at LETU Mongolia American University, but we won't judge if you use it to win food trivia night. 🍴""")
 
-st.markdown("### Upload your image here")
+st.markdown("""### Upload your image here""")
 
 image_file = st.file_uploader("Image Uploader", type=["png","jpg","jpeg"], key="upload_img")
 
