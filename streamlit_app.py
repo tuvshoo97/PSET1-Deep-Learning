@@ -12,7 +12,7 @@ This app was created as a fun demo for the Deep Learning course at LETU Mongolia
 
 st.markdown("""### Upload your image here""")
 
-image_file = st.file_uploader("Image Uploader", type=["png","jpg","jpeg"], key="upload_img")
+image_file = st.file_uploader("Image Uploader", type=["png","jpg","jpeg"])
 
 # Model Loading Section
 model_path = Path("export.pkl")
