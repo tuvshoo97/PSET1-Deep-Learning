@@ -27,7 +27,7 @@ else:
     learn_inf = load_learner('export.pkl')
 
 if image_file is not None:
-    with st.spinner("Classifying food...", key="classifying"):
+    with st.spinner("Classifying food..."):
         img = PILImage.create(image_file)
         pred, pred_idx, probs = learn_inf.predict(img)
         
