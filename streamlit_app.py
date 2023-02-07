@@ -18,10 +18,10 @@ image_file = st.file_uploader("Image Uploader", type=["png","jpg","jpeg"], key="
 model_path = Path("export.pkl")
 
 if not model_path.exists():
-    with st.spinner("Downloading model... this may take a while! \n Don't stop it!"):
-        url = 'https://drive.google.com/file/d/1rMgWGS3meqWVLN0PjSHEFbb0jwZT6gCE/view?usp=sharing'
+    with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
+        url = 'https://drive.google.com/uc?id=1cs7nWO-XIQBWqLnTjzuG_lOkEnXwyrpd'
         output = 'export.pkl'
-        gdown.download(url, output, quiet=False, use_cookies=False)
+        gdown.download(url, output, quiet=False)
     learn_inf = load_learner('export.pkl')
 else:
     learn_inf = load_learner('export.pkl')
