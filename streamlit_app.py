@@ -1,5 +1,5 @@
 import streamlit as st
-from fastcore.all import 
+from fastcore.all import *
 import fastai
 from fastai.vision.all import *
 import gdown
