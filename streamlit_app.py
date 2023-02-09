@@ -1,4 +1,5 @@
 import streamlit as st
+from fastbook import *
 from fastai.vision.all import *
 import gdown
 
